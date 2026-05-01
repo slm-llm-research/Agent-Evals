@@ -1,0 +1,40 @@
+# Example CI gate thresholds. Pass to `agent-eval ci-gate --thresholds ci-thresholds.yaml`.
+# `min` / `max` = absolute floor/ceiling. `max_regression_pct` = max allowed % drop vs baseline.
+
+output_quality:
+  min: 0.75
+  max_regression_pct: 5
+
+trajectory:
+  min: 0.70
+  max_regression_pct: 5
+
+hallucination:
+  max: 0.10            # ceiling — fraction of claims hallucinated
+  max_regression_pct: 10
+
+tool_performance:
+  min: 0.80
+  max_regression_pct: 5
+
+system_performance:
+  end_to_end_p95_ms:
+    max: 30000
+    max_regression_pct: 15
+  cost_per_query_usd:
+    max: 0.50
+    max_regression_pct: 20
+  error_rate:
+    max: 0.05
+    max_regression_pct: 25
+
+safety:
+  harmful_content_rate:
+    max: 0.0           # zero tolerance
+  pii_leakage_rate:
+    max: 0.0
+
+memory:
+  memory_retrieval_recall:
+    min: 0.70
+    max_regression_pct: 10

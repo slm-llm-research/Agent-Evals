@@ -1,0 +1,6149 @@
+{
+  "report_id": "8fd02433-23d4-4403-8e28-5c17f9da625c",
+  "generated_at": "2026-05-01T00:11:19.324846Z",
+  "system_name": "agent-system",
+  "dataset_name": "research_agent_template",
+  "dataset_size": 12,
+  "evaluation_duration_seconds": 47.35416700004134,
+  "package_version": "0.2.0",
+  "langsmith_project": null,
+  "system_overview": {
+    "overall_score": 0.7083333333333333,
+    "health_status": "good",
+    "pass_rate": 0.7298850574712644,
+    "flag_count": 94,
+    "critical_flag_count": 94
+  },
+  "component_scores": [
+    {
+      "component_name": "system",
+      "component_type": "agent",
+      "overall_score": 0.7604790419161677,
+      "evaluator_results": [
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.01570803578943014,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.004708999767899513,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.0031669624149799347,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.0020419247448444366,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.002540997229516506,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.002249958924949169,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "web_search",
+              "summarize"
+            ],
+            "f1": 0.0
+          },
+          "latency_ms": 0.005333917215466499,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "order_bonus": 0.0,
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "web_search",
+              "summarize"
+            ]
+          },
+          "latency_ms": 0.005209003575146198,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "actual": [],
+            "expected": [
+              "plan",
+              "search_us",
+              "search_china",
+              "search_india",
+              "synthesize"
+            ]
+          },
+          "latency_ms": 0.007999944500625134,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "graph_edit_distance": 9.0,
+            "actual_nodes": [],
+            "expected_nodes": [
+              "plan",
+              "search_us",
+              "search_china",
+              "search_india",
+              "synthesize"
+            ]
+          },
+          "latency_ms": 458.9998750016093,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.03187509719282389,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.02245896030217409,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.03733299672603607,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.01695798709988594,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.026999972760677338,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.03433297388255596,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.04595797508955002,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.03891601227223873,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.028957962058484554,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.03204203676432371,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.021000043489038944,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.02408307045698166,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.009624985978007317,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.011584023013710976,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.04312500823289156,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.04612491466104984,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.08775002788752317,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.012584030628204346,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.024124979972839355,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.016458099707961082,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.01770805101841688,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.013625016435980797,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.020958948880434036,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.01795799471437931,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "summarize"
+            ],
+            "f1": 0.0
+          },
+          "latency_ms": 0.02737506292760372,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "order_bonus": 0.0,
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "summarize"
+            ]
+          },
+          "latency_ms": 0.019832979887723923,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.018583028577268124,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.012208009138703346,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.012542004697024822,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.0072909751906991005,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.012875068932771683,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.0069160014390945435,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.011749914847314358,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.006916932761669159,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.029957969672977924,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.005207955837249756,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.031000003218650818,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.014499993994832039,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.009124982170760632,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.006292015314102173,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.005041016265749931,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.004500034265220165,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.016542035154998302,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.0072909751906991005,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.043874955736100674,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.005542067810893059,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.010541989468038082,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.005792011506855488,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.00600004568696022,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.005415990017354488,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.005207955837249756,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.005624955520033836,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "summarize"
+            ],
+            "f1": 0.0
+          },
+          "latency_ms": 0.32645801547914743,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "order_bonus": 0.0,
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "summarize"
+            ]
+          },
+          "latency_ms": 0.013625016435980797,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.006125075742602348,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.005708076059818268,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.012874952517449856,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.0072499969974160194,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.016583944670856,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.00825000461190939,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.011541997082531452,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.008167000487446785,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.03329210449010134,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.006375019438564777,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.01225003506988287,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.0249580480158329,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.03250001464039087,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.008041039109230042,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.005542067810893059,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.006124959327280521,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.03491691313683987,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.007125083357095718,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.07483398076146841,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.00558304600417614,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.012249918654561043,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.006624963134527206,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.008958042599260807,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.00500003807246685,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.007166992872953415,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.010416959412395954,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "web_search",
+              "summarize"
+            ],
+            "f1": 0.0
+          },
+          "latency_ms": 0.01466704998165369,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "order_bonus": 0.0,
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "web_search",
+              "summarize"
+            ]
+          },
+          "latency_ms": 0.010750023648142815,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.006875023245811462,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.004458008334040642,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.006291898898780346,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.004415982402861118,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.0071249669417738914,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.0040839659050107,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.005624955520033836,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.003917026333510876,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.009958981536328793,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.0027919886633753777,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.005292007699608803,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.007916009053587914,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.00395788811147213,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.008875038474798203,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.0027919886633753777,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.0029579969123005867,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.00925001222640276,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.003584078513085842,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.027667032554745674,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.0027919886633753777,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.005333917215466499,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.0032919924706220627,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.005125068128108978,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.0028329668566584587,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.0030420487746596336,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.0033329706639051437,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "summarize"
+            ],
+            "f1": 0.0
+          },
+          "latency_ms": 0.006415997631847858,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "order_bonus": 0.0,
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "summarize"
+            ]
+          },
+          "latency_ms": 0.005292007699608803,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.0030419323593378067,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.002458924427628517,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.031291041523218155,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.016125035472214222,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.029790913686156273,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.01508404966443777,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.02716702874749899,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.013750046491622925,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.06083399057388306,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.01383305061608553,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.02433289773762226,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.032625044696033,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.02191704697906971,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.024999957531690598,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.006958027370274067,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.00566698145121336,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.02345908433198929,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.015208031982183456,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.059125013649463654,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.005665933713316917,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.013874960131943226,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.006582937203347683,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.01225003506988287,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.01037493348121643,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.01237494871020317,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.00666698906570673,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "actual": [],
+            "expected": [
+              "web_search",
+              "summarize"
+            ],
+            "f1": 0.0
+          },
+          "latency_ms": 0.02237502485513687,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "order_bonus": 0.0,
+            "actual": [],
+            "expected": [
+              "web_search",
+              "summarize"
+            ]
+          },
+          "latency_ms": 0.01737498678267002,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.011833966709673405,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.0149579718708992,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.03929203376173973,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.0237500062212348,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.04145794082432985,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.05895807407796383,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.03162503708153963,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.02174999099224806,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.04912505391985178,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.021625077351927757,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.03925000783056021,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.0426670303568244,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.021417043171823025,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.026250025257468224,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.016000005416572094,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.04612503107637167,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.050875009037554264,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.029082992114126682,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.0980000477284193,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.028084032237529755,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.03166694659739733,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.01858395989984274,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.025124987587332726,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.016832957044243813,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.017542042769491673,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.019832979887723923,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "web_search",
+              "summarize"
+            ],
+            "f1": 0.0
+          },
+          "latency_ms": 0.03216706681996584,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "order_bonus": 0.0,
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "web_search",
+              "summarize"
+            ]
+          },
+          "latency_ms": 0.0265840208157897,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.018375110812485218,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.015125027857720852,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.012917094863951206,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.007583992555737495,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.01520791556686163,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.006332993507385254,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.009915907867252827,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.005792011506855488,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.02050003968179226,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.006083049811422825,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.011958065442740917,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.020249979570508003,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.007166992872953415,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.007958034984767437,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.004334026016294956,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.004708068445324898,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.020915991626679897,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.00658305361866951,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.05704199429601431,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.005375011824071407,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.01791701652109623,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.010624993592500687,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.010750023648142815,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.00695791095495224,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.009124982170760632,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.009416020475327969,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "summarize"
+            ],
+            "f1": 0.0
+          },
+          "latency_ms": 0.01295795664191246,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "order_bonus": 0.0,
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "summarize"
+            ]
+          },
+          "latency_ms": 0.01300009898841381,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.004749977961182594,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.00795908272266388,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.01733400858938694,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.010707997716963291,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.02037500962615013,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.009999959729611874,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.017749960534274578,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.00925001222640276,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.05891697946935892,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.008875038474798203,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.018625054508447647,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.01995800994336605,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.012832926586270332,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.009041046723723412,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.0072909751906991005,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.006292015314102173,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.041749910451471806,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.015042023733258247,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.04958303179591894,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.00800006091594696,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.010708929039537907,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.011499971151351929,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.009292038157582283,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.06708304863423109,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.006082933396100998,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.005499925464391708,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "actual": [],
+            "expected": [
+              "web_search",
+              "summarize"
+            ],
+            "f1": 0.0
+          },
+          "latency_ms": 0.011041993275284767,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "order_bonus": 0.0,
+            "actual": [],
+            "expected": [
+              "web_search",
+              "summarize"
+            ]
+          },
+          "latency_ms": 0.010208110325038433,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.006458954885601997,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.005249981768429279,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.014042016118764877,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.011541997082531452,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.01579197123646736,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.00700005330145359,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.010624993592500687,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.007208087481558323,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.01716695260256529,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.00500003807246685,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.016708974726498127,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.01708301715552807,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.008999952115118504,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.006749993190169334,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.00595790334045887,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.006499933078885078,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.01933402381837368,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.012749922461807728,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.03941694740206003,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.005125068128108978,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.009332899935543537,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.005417037755250931,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.00800006091594696,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.02258399035781622,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.005707959644496441,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.005917041562497616,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "summarize"
+            ],
+            "f1": 0.0
+          },
+          "latency_ms": 0.011625001206994057,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "order_bonus": 0.0,
+            "actual": [],
+            "expected": [
+              "web_search",
+              "web_search",
+              "summarize"
+            ]
+          },
+          "latency_ms": 0.009875046089291573,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.006542075425386429,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.00566698145121336,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.006832997314631939,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.004292000085115433,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.0076249707490205765,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.004332978278398514,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.005249981768429279,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.003582914359867573,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.02445897553116083,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.0030420487746596336,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.005583977326750755,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.00825000461190939,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.004125060513615608,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.0037909485399723053,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.002874992787837982,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.0100000761449337,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.009792041964828968,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.004332978278398514,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.02437504008412361,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.00300002284348011,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.005041016265749931,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.003374996595084667,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.015041092410683632,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.0029159709811210632,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.006708083674311638,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_answer_keywords — skipped"
+          },
+          "latency_ms": 0.003374996595084667,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_tool_sequence — skipped"
+          },
+          "latency_ms": 0.012625008821487427,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.007042079232633114,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.006499933078885078,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.010041054338216782,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.005958019755780697,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.012459000572562218,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.005832989700138569,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.01404189970344305,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.009416951797902584,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.022125081159174442,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.00529095996171236,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.009333016350865364,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.013750046491622925,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.006875023245811462,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.00566698145121336,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.004875008016824722,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.00558304600417614,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.015666941180825233,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.006792019121348858,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.04729093052446842,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.004207948222756386,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "task_success_rate",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "has_answer": false,
+            "has_error": false
+          },
+          "latency_ms": 0.0100000761449337,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_faithfulness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.005124951712787151,
+          "flagged": true,
+          "flag_reason": "empty answer",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "answer_relevance",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.006916932761669159,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "completeness",
+          "component_name": "system",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.003999914042651653,
+          "flagged": true,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "format_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {},
+          "latency_ms": 0.00866700429469347,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "keyword_coverage",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_answer_keywords — skipped"
+          },
+          "latency_ms": 0.005583977326750755,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_tool_sequence — skipped"
+          },
+          "latency_ms": 0.03616698086261749,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "node_f1",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.004915986210107803,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "ssi",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no expected_task_graph — skipped"
+          },
+          "latency_ms": 0.01033395528793335,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "step_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_steps": 0,
+            "successful_steps": 0
+          },
+          "latency_ms": 0.035917037166655064,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "redundancy_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "total_calls": 0,
+            "duplicate_calls": 0
+          },
+          "latency_ms": 0.008167000487446785,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_recovery_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "errors": 0,
+            "recoveries": 0
+          },
+          "latency_ms": 0.08570798672735691,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cycle_detected",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "cycle": false,
+            "offending": null
+          },
+          "latency_ms": 0.02483394928276539,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_planning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no plan text observed"
+          },
+          "latency_ms": 0.07091695442795753,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_observation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.033624935895204544,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_citation",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no citations"
+          },
+          "latency_ms": 0.2509999321773648,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "hallucination_reasoning",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "insufficient material"
+          },
+          "latency_ms": 0.026832916773855686,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "tool_success_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no tool calls observed"
+          },
+          "latency_ms": 0.05579204298555851,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "mcp_server_availability",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no MCP servers in registry"
+          },
+          "latency_ms": 0.09133398998528719,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "end_to_end_latency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no timing on trace"
+          },
+          "latency_ms": 0.07341697346419096,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "time_to_first_audio_byte",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "time_to_first_audio_byte not present on trace — skipped"
+          },
+          "latency_ms": 0.035708071663975716,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "token_efficiency",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no token counts"
+          },
+          "latency_ms": 0.005624955520033836,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "error_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "error_on_this_query": false
+          },
+          "latency_ms": 0.00658305361866951,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "cost_per_query_usd",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.5,
+          "details": {
+            "cost_usd": 0.0,
+            "prompt_tokens": 0,
+            "completion_tokens": 0
+          },
+          "latency_ms": 0.03120803739875555,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "harmful_content_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "empty answer"
+          },
+          "latency_ms": 0.045791035518050194,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "pii_leakage_rate",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "leaks": {}
+          },
+          "latency_ms": 0.1163750421255827,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "instruction_compliance",
+          "component_name": "system",
+          "score": 1.0,
+          "passed": true,
+          "threshold": 0.7,
+          "details": {
+            "reason": "no system_prompt configured — skipped"
+          },
+          "latency_ms": 0.008209026418626308,
+          "flagged": false,
+          "flag_reason": null,
+          "improvement_hints": []
+        }
+      ],
+      "rank": 1,
+      "trend": null
+    },
+    {
+      "component_name": "multi-hop",
+      "component_type": "agent",
+      "overall_score": 0.0,
+      "evaluator_results": [
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "multi-hop",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cd7a410 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 7819.0810000523925,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cd7a410 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        }
+      ],
+      "rank": 2,
+      "trend": null
+    },
+    {
+      "component_name": "technical-analysis",
+      "component_type": "agent",
+      "overall_score": 0.0,
+      "evaluator_results": [
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "technical-analysis",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cdaca10 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3006.2277499819174,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cdaca10 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        }
+      ],
+      "rank": 3,
+      "trend": null
+    },
+    {
+      "component_name": "decision-support",
+      "component_type": "agent",
+      "overall_score": 0.0,
+      "evaluator_results": [
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "decision-support",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cdac910 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3007.1290000341833,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cdac910 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        }
+      ],
+      "rank": 4,
+      "trend": null
+    },
+    {
+      "component_name": "multi-region",
+      "component_type": "agent",
+      "overall_score": 0.0,
+      "evaluator_results": [
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "multi-region",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cdc0190 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3003.3717498881742,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cdc0190 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        }
+      ],
+      "rank": 5,
+      "trend": null
+    },
+    {
+      "component_name": "narrative",
+      "component_type": "agent",
+      "overall_score": 0.0,
+      "evaluator_results": [
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "narrative",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cdc2510 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3007.8050839947537,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cdc2510 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        }
+      ],
+      "rank": 6,
+      "trend": null
+    },
+    {
+      "component_name": "technical",
+      "component_type": "agent",
+      "overall_score": 0.0,
+      "evaluator_results": [
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "technical",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cdc2610 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3006.9249159423634,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cdc2610 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "technical",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cdf9050 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3005.1384159596637,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cdf9050 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        }
+      ],
+      "rank": 7,
+      "trend": null
+    },
+    {
+      "component_name": "comparison",
+      "component_type": "agent",
+      "overall_score": 0.0,
+      "evaluator_results": [
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "comparison",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cdd8dd0 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3005.927874939516,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cdd8dd0 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        }
+      ],
+      "rank": 8,
+      "trend": null
+    },
+    {
+      "component_name": "geopolitics",
+      "component_type": "agent",
+      "overall_score": 0.0,
+      "evaluator_results": [
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "geopolitics",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cddb110 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3004.505958990194,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cddb110 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        }
+      ],
+      "rank": 9,
+      "trend": null
+    },
+    {
+      "component_name": "academic",
+      "component_type": "agent",
+      "overall_score": 0.0,
+      "evaluator_results": [
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "academic",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cdc20d0 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3001.762166968547,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cdc20d0 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        }
+      ],
+      "rank": 10,
+      "trend": null
+    },
+    {
+      "component_name": "combinatorial-explosion",
+      "component_type": "agent",
+      "overall_score": 0.0,
+      "evaluator_results": [
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "combinatorial-explosion",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cdfabd0 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3005.2005000179633,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cdfabd0 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "combinatorial-explosion",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cdfb990 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3004.511957988143,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cdfb990 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        }
+      ],
+      "rank": 11,
+      "trend": null
+    },
+    {
+      "component_name": "nonsense-but-answerable",
+      "component_type": "agent",
+      "overall_score": 0.0,
+      "evaluator_results": [
+        {
+          "evaluator_name": "tool_selection_accuracy",
+          "component_name": "nonsense-but-answerable",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17d311910 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3006.459208088927,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17d311910 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        },
+        {
+          "evaluator_name": "intent_resolution",
+          "component_name": "nonsense-but-answerable",
+          "score": 0.0,
+          "passed": false,
+          "threshold": 0.7,
+          "details": {
+            "error": "RetryError[<Future at 0x17cdc19d0 state=finished raised OpenAIError>]"
+          },
+          "latency_ms": 3003.764708060771,
+          "flagged": true,
+          "flag_reason": "evaluator raised: RetryError: RetryError[<Future at 0x17cdc19d0 state=finished raised OpenAIError>]",
+          "improvement_hints": []
+        }
+      ],
+      "rank": 12,
+      "trend": null
+    }
+  ],
+  "dimension_scores": {
+    "output_quality": 0.19444444444444445,
+    "trajectory_quality": 0.6666666666666666,
+    "hallucination_risk": 0.0,
+    "tool_performance": 1.0,
+    "system_performance": 1.0,
+    "safety": 1.0,
+    "memory_quality": 0.0
+  },
+  "flagged_issues": [
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "keyword_coverage",
+      "score": 0.0,
+      "description": "keyword_coverage below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "tool_selection_accuracy below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_f1",
+      "score": 0.0,
+      "description": "tool_f1 below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "node_f1",
+      "score": 0.0,
+      "description": "node_f1 below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "ssi",
+      "score": 0.0,
+      "description": "ssi below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "multi-hop",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cd7a410 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "keyword_coverage",
+      "score": 0.0,
+      "description": "keyword_coverage below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "tool_selection_accuracy below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_f1",
+      "score": 0.0,
+      "description": "tool_f1 below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "technical-analysis",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cdaca10 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "keyword_coverage",
+      "score": 0.0,
+      "description": "keyword_coverage below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "tool_selection_accuracy below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_f1",
+      "score": 0.0,
+      "description": "tool_f1 below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "decision-support",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cdac910 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "keyword_coverage",
+      "score": 0.0,
+      "description": "keyword_coverage below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "tool_selection_accuracy below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_f1",
+      "score": 0.0,
+      "description": "tool_f1 below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "multi-region",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cdc0190 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "keyword_coverage",
+      "score": 0.0,
+      "description": "keyword_coverage below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "tool_selection_accuracy below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_f1",
+      "score": 0.0,
+      "description": "tool_f1 below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "narrative",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cdc2510 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "keyword_coverage",
+      "score": 0.0,
+      "description": "keyword_coverage below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "tool_selection_accuracy below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_f1",
+      "score": 0.0,
+      "description": "tool_f1 below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "technical",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cdc2610 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "keyword_coverage",
+      "score": 0.0,
+      "description": "keyword_coverage below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "tool_selection_accuracy below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_f1",
+      "score": 0.0,
+      "description": "tool_f1 below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "comparison",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cdd8dd0 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "keyword_coverage",
+      "score": 0.0,
+      "description": "keyword_coverage below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "tool_selection_accuracy below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_f1",
+      "score": 0.0,
+      "description": "tool_f1 below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "geopolitics",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cddb110 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "keyword_coverage",
+      "score": 0.0,
+      "description": "keyword_coverage below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "tool_selection_accuracy below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_f1",
+      "score": 0.0,
+      "description": "tool_f1 below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "technical",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cdf9050 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "keyword_coverage",
+      "score": 0.0,
+      "description": "keyword_coverage below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "tool_selection_accuracy below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "tool_f1",
+      "score": 0.0,
+      "description": "tool_f1 below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "academic",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cdc20d0 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "combinatorial-explosion",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cdfabd0 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "combinatorial-explosion",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cdfb990 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "task_success_rate",
+      "score": 0.0,
+      "description": "task_success_rate below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_faithfulness",
+      "score": 0.0,
+      "description": "empty answer",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "answer_relevance",
+      "score": 0.0,
+      "description": "answer_relevance below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "system",
+      "metric": "completeness",
+      "score": 0.0,
+      "description": "completeness below threshold",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "nonsense-but-answerable",
+      "metric": "tool_selection_accuracy",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17d311910 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    },
+    {
+      "severity": "critical",
+      "component": "nonsense-but-answerable",
+      "metric": "intent_resolution",
+      "score": 0.0,
+      "description": "evaluator raised: RetryError: RetryError[<Future at 0x17cdc19d0 state=finished raised OpenAIError>]",
+      "example_trace_id": null,
+      "example_trace_url": null
+    }
+  ],
+  "tuning_recommendations": [
+    {
+      "component": "answer-generation node",
+      "issue_type": "answer quality",
+      "severity": "critical",
+      "current_score": 0.19444444444444445,
+      "target_score": 0.85,
+      "effort_estimate": "hours",
+      "tuning_type": "prompt",
+      "specific_action": "Add 3-5 few-shot examples of correct answers to the answer-generation prompt. Tighten output format constraints (word limit, sections).",
+      "example_fix": null,
+      "metric": "output_quality"
+    },
+    {
+      "component": "orchestrator / planner",
+      "issue_type": "trajectory quality",
+      "severity": "medium",
+      "current_score": 0.6666666666666666,
+      "target_score": 0.85,
+      "effort_estimate": "hours",
+      "tuning_type": "architecture",
+      "specific_action": "Tighten the planner prompt to require explicit tool selection rationale. Add a stop condition for research depth (max 2 iterations) and a cycle guard.",
+      "example_fix": null,
+      "metric": "trajectory_quality"
+    }
+  ],
+  "dataset_stats": {
+    "n_examples": 0,
+    "query_type_distribution": {},
+    "complexity_distribution": {},
+    "avg_complexity": null,
+    "coverage": {}
+  },
+  "backends_used": {
+    "task_success_rate": "native",
+    "answer_faithfulness": "native",
+    "answer_relevance": "native",
+    "completeness": "native",
+    "format_compliance": "native",
+    "keyword_coverage": "native",
+    "tool_selection_accuracy": "native",
+    "tool_f1": "native",
+    "node_f1": "native",
+    "ssi": "native",
+    "intent_resolution": "native",
+    "step_success_rate": "native",
+    "redundancy_rate": "native",
+    "error_recovery_rate": "native",
+    "cycle_detected": "native",
+    "hallucination_planning": "native",
+    "hallucination_observation": "native",
+    "hallucination_citation": "native",
+    "hallucination_reasoning": "native",
+    "tool_success_rate": "native",
+    "mcp_server_availability": "native",
+    "end_to_end_latency": "native",
+    "time_to_first_audio_byte": "native",
+    "token_efficiency": "native",
+    "error_rate": "native",
+    "cost_per_query_usd": "native",
+    "harmful_content_rate": "native",
+    "pii_leakage_rate": "native",
+    "instruction_compliance": "native"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "dimension": "hallucination",
+  "description": "20 (claims, sources, human_score) examples for HallucinationJudge. Score = fraction of claims supported by sources.",
+  "examples": [
+    {"id": "h-01", "claims": "Paris is the capital of France.", "sources": ["The capital of France is Paris."], "human_score": 1.0},
+    {"id": "h-02", "claims": "Paris is the capital of Germany.", "sources": ["The capital of France is Paris.", "Berlin is the capital of Germany."], "human_score": 0.0, "notes": "directly contradicted"},
+    {"id": "h-03", "claims": "France borders Spain, Italy, and Belgium.", "sources": ["France shares borders with Belgium, Luxembourg, Germany, Switzerland, Italy, Monaco, Andorra, and Spain."], "human_score": 1.0},
+    {"id": "h-04", "claims": "France borders Spain, Italy, Belgium, and Norway.", "sources": ["France shares borders with Belgium, Luxembourg, Germany, Switzerland, Italy, Monaco, Andorra, and Spain."], "human_score": 0.75, "notes": "3 of 4 claims supported"},
+    {"id": "h-05", "claims": "The Eiffel Tower is 330 meters tall.", "sources": ["The Eiffel Tower stands approximately 330 meters tall including antennae."], "human_score": 1.0},
+    {"id": "h-06", "claims": "The Eiffel Tower is 500 meters tall.", "sources": ["The Eiffel Tower stands approximately 330 meters tall including antennae."], "human_score": 0.0},
+    {"id": "h-07", "claims": "Tesla was founded by Elon Musk.", "sources": ["Tesla was founded in 2003 by Martin Eberhard and Marc Tarpenning. Elon Musk joined as chairman in 2004."], "human_score": 0.0, "notes": "common misconception"},
+    {"id": "h-08", "claims": "Apollo 11 landed humans on the moon in 1969.", "sources": ["On July 20, 1969, Apollo 11 successfully landed Neil Armstrong and Buzz Aldrin on the Moon."], "human_score": 1.0},
+    {"id": "h-09", "claims": "The Great Wall of China is visible from space.", "sources": ["NASA confirms the Great Wall is generally not visible to the naked eye from low Earth orbit."], "human_score": 0.0},
+    {"id": "h-10", "claims": "Water boils at 100 degrees Celsius at sea level.", "sources": ["At standard atmospheric pressure (sea level), water boils at 100 °C."], "human_score": 1.0},
+    {"id": "h-11", "claims": "Water boils at 100 degrees Celsius regardless of altitude.", "sources": ["At standard atmospheric pressure (sea level), water boils at 100 °C; at higher altitudes the boiling point decreases."], "human_score": 0.0, "notes": "subtle false generalization"},
+    {"id": "h-12", "claims": "Python is dynamically typed and was created by Guido van Rossum.", "sources": ["Python is a dynamically typed, interpreted language designed by Guido van Rossum and first released in 1991."], "human_score": 1.0},
+    {"id": "h-13", "claims": "Python is statically typed.", "sources": ["Python is dynamically typed."], "human_score": 0.0},
+    {"id": "h-14", "claims": "The CEO of OpenAI is Sam Altman.", "sources": ["Sam Altman serves as CEO of OpenAI."], "human_score": 1.0},
+    {"id": "h-15", "claims": "The CEO of OpenAI is Sam Altman, and he founded the company alone.", "sources": ["Sam Altman serves as CEO of OpenAI. OpenAI was co-founded in 2015 by Sam Altman, Elon Musk, Greg Brockman, Ilya Sutskever, Wojciech Zaremba, John Schulman."], "human_score": 0.5, "notes": "1 of 2 claims supported"},
+    {"id": "h-16", "claims": "", "sources": ["Anything."], "human_score": 1.0, "notes": "no claims to verify"},
+    {"id": "h-17", "claims": "The earth is flat.", "sources": ["The Earth is an oblate spheroid."], "human_score": 0.0},
+    {"id": "h-18", "claims": "Shakespeare wrote Hamlet around 1600.", "sources": ["Hamlet was written between 1599 and 1601 by William Shakespeare."], "human_score": 1.0},
+    {"id": "h-19", "claims": "Shakespeare wrote Hamlet in 1750.", "sources": ["Hamlet was written between 1599 and 1601 by William Shakespeare."], "human_score": 0.0},
+    {"id": "h-20", "claims": "Tokyo is in Japan.", "sources": [], "human_score": 1.0, "notes": "no sources to verify against — defaults to 1.0 by convention"}
+  ]
+}

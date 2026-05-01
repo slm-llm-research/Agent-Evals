@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>agent-eval report — agent-system</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  body { font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; margin: 32px; color: #222; max-width: 1100px; }
+  h1 { margin: 0 0 4px 0; }
+  h2 { margin-top: 32px; padding-bottom: 4px; border-bottom: 1px solid #eee; }
+  .muted { color: #777; font-size: 12px; }
+  .badge { display: inline-block; padding: 3px 9px; border-radius: 12px; font-weight: 600; font-size: 12px; color: white; }
+  .badge.excellent { background: #2e7d32; }
+  .badge.good { background: #689f38; }
+  .badge.needs_improvement { background: #f9a825; color: #222; }
+  .badge.critical { background: #c62828; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .card { border: 1px solid #eee; border-radius: 8px; padding: 16px; }
+  .gauge { font-size: 48px; font-weight: 700; }
+  .small { font-size: 12px; color: #555; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #f1f1f1; }
+  th { background: #fafafa; font-weight: 600; }
+  tr.flagged td { background: #fff3e0; }
+  tr.critical td { background: #ffebee; }
+  details { margin: 8px 0; }
+  details > summary { cursor: pointer; font-weight: 600; padding: 4px 0; }
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+  .pill { display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 8px; margin-right: 4px; background: #e0e0e0; color: #333; }
+</style>
+</head>
+<body>
+  <h1>agent-eval — agent-system</h1>
+  <div class="muted">
+    Report ID <code>8fd02433-23d4-4403-8e28-5c17f9da625c</code> · Generated 2026-05-01 00:11 UTC
+    · Dataset <code>research_agent_template</code> (12 examples)
+    · Duration 47.4s
+    · Package v0.2.0
+  </div>
+
+  <div class="grid" style="margin-top: 24px;">
+    <div class="card">
+      <div class="small">Overall score</div>
+      <div class="gauge">0.71</div>
+      <div><span class="badge good">GOOD</span></div>
+      <div class="small" style="margin-top: 8px;">
+        Pass rate 73% ·
+        94 flags
+        (94 critical)
+      </div>
+    </div>
+    <div class="card">
+      <div class="small">Dimension radar</div>
+      <canvas id="dimensionRadar" width="350" height="280"></canvas>
+    </div>
+  </div>
+
+  <h2>Top issues</h2>
+  
+  <table>
+    <thead><tr><th>Severity</th><th>Component</th><th>Metric</th><th>Score</th><th>Description</th><th>Trace</th></tr></thead>
+    <tbody>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.00</td>
+        <td>task_success_rate below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.00</td>
+        <td>empty answer</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.00</td>
+        <td>answer_relevance below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.00</td>
+        <td>completeness below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.00</td>
+        <td>keyword_coverage below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.00</td>
+        <td>tool_selection_accuracy below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.00</td>
+        <td>tool_f1 below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>0.00</td>
+        <td>node_f1 below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>0.00</td>
+        <td>ssi below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>multi-hop</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.00</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cd7a410 state=finished raised OpenAIError>]</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.00</td>
+        <td>task_success_rate below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.00</td>
+        <td>empty answer</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.00</td>
+        <td>answer_relevance below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.00</td>
+        <td>completeness below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.00</td>
+        <td>keyword_coverage below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.00</td>
+        <td>tool_selection_accuracy below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.00</td>
+        <td>tool_f1 below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>technical-analysis</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.00</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdaca10 state=finished raised OpenAIError>]</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.00</td>
+        <td>task_success_rate below threshold</td>
+        <td></td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill">critical</span></td>
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.00</td>
+        <td>empty answer</td>
+        <td></td>
+      </tr>
+    
+    </tbody>
+  </table>
+  
+
+  <h2>Components</h2>
+  <table>
+    <thead><tr><th>#</th><th>Component</th><th>Type</th><th>Score</th><th>Status</th><th>Trend</th></tr></thead>
+    <tbody>
+    
+      <tr>
+        <td>1</td>
+        <td><strong>system</strong></td>
+        <td>agent</td>
+        <td>0.76</td>
+        <td><span class="badge good">GOOD</span></td>
+        <td>—</td>
+      </tr>
+    
+      <tr>
+        <td>2</td>
+        <td><strong>multi-hop</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>—</td>
+      </tr>
+    
+      <tr>
+        <td>3</td>
+        <td><strong>technical-analysis</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>—</td>
+      </tr>
+    
+      <tr>
+        <td>4</td>
+        <td><strong>decision-support</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>—</td>
+      </tr>
+    
+      <tr>
+        <td>5</td>
+        <td><strong>multi-region</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>—</td>
+      </tr>
+    
+      <tr>
+        <td>6</td>
+        <td><strong>narrative</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>—</td>
+      </tr>
+    
+      <tr>
+        <td>7</td>
+        <td><strong>technical</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>—</td>
+      </tr>
+    
+      <tr>
+        <td>8</td>
+        <td><strong>comparison</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>—</td>
+      </tr>
+    
+      <tr>
+        <td>9</td>
+        <td><strong>geopolitics</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>—</td>
+      </tr>
+    
+      <tr>
+        <td>10</td>
+        <td><strong>academic</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>—</td>
+      </tr>
+    
+      <tr>
+        <td>11</td>
+        <td><strong>combinatorial-explosion</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>—</td>
+      </tr>
+    
+      <tr>
+        <td>12</td>
+        <td><strong>nonsense-but-answerable</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>—</td>
+      </tr>
+    
+    </tbody>
+  </table>
+
+  <h2>Tuning recommendations</h2>
+  
+    
+      <details><summary><span class="pill">critical</span> answer-generation node — answer quality</summary>
+        <div class="small" style="margin: 8px 0;">Add 3-5 few-shot examples of correct answers to the answer-generation prompt. Tighten output format constraints (word limit, sections).</div>
+        <div class="small">Current 0.19 → target 0.85 · Effort: hours · Type: prompt</div>
+      </details>
+    
+      <details><summary><span class="pill">medium</span> orchestrator / planner — trajectory quality</summary>
+        <div class="small" style="margin: 8px 0;">Tighten the planner prompt to require explicit tool selection rationale. Add a stop condition for research depth (max 2 iterations) and a cycle guard.</div>
+        <div class="small">Current 0.67 → target 0.85 · Effort: hours · Type: architecture</div>
+      </details>
+    
+  
+
+  <h2>Backends used</h2>
+  <ul class="small">
+  
+    <li><code>task_success_rate</code> via <strong>native</strong></li>
+  
+    <li><code>answer_faithfulness</code> via <strong>native</strong></li>
+  
+    <li><code>answer_relevance</code> via <strong>native</strong></li>
+  
+    <li><code>completeness</code> via <strong>native</strong></li>
+  
+    <li><code>format_compliance</code> via <strong>native</strong></li>
+  
+    <li><code>keyword_coverage</code> via <strong>native</strong></li>
+  
+    <li><code>tool_selection_accuracy</code> via <strong>native</strong></li>
+  
+    <li><code>tool_f1</code> via <strong>native</strong></li>
+  
+    <li><code>node_f1</code> via <strong>native</strong></li>
+  
+    <li><code>ssi</code> via <strong>native</strong></li>
+  
+    <li><code>intent_resolution</code> via <strong>native</strong></li>
+  
+    <li><code>step_success_rate</code> via <strong>native</strong></li>
+  
+    <li><code>redundancy_rate</code> via <strong>native</strong></li>
+  
+    <li><code>error_recovery_rate</code> via <strong>native</strong></li>
+  
+    <li><code>cycle_detected</code> via <strong>native</strong></li>
+  
+    <li><code>hallucination_planning</code> via <strong>native</strong></li>
+  
+    <li><code>hallucination_observation</code> via <strong>native</strong></li>
+  
+    <li><code>hallucination_citation</code> via <strong>native</strong></li>
+  
+    <li><code>hallucination_reasoning</code> via <strong>native</strong></li>
+  
+    <li><code>tool_success_rate</code> via <strong>native</strong></li>
+  
+    <li><code>mcp_server_availability</code> via <strong>native</strong></li>
+  
+    <li><code>end_to_end_latency</code> via <strong>native</strong></li>
+  
+    <li><code>time_to_first_audio_byte</code> via <strong>native</strong></li>
+  
+    <li><code>token_efficiency</code> via <strong>native</strong></li>
+  
+    <li><code>error_rate</code> via <strong>native</strong></li>
+  
+    <li><code>cost_per_query_usd</code> via <strong>native</strong></li>
+  
+    <li><code>harmful_content_rate</code> via <strong>native</strong></li>
+  
+    <li><code>pii_leakage_rate</code> via <strong>native</strong></li>
+  
+    <li><code>instruction_compliance</code> via <strong>native</strong></li>
+  
+  </ul>
+
+<script>
+const ctx = document.getElementById('dimensionRadar');
+new Chart(ctx, {
+  type: 'radar',
+  data: {
+    labels: ['output_quality','trajectory','hallucination_risk','tool','system','safety','memory'],
+    datasets: [{
+      label: 'agent-system',
+      data: [
+        0.19444444444444445,
+        0.6666666666666666,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      fill: true,
+      backgroundColor: 'rgba(70,130,180,0.2)',
+      borderColor: 'rgb(70,130,180)',
+      pointBackgroundColor: 'rgb(70,130,180)',
+    }]
+  },
+  options: { scales: { r: { suggestedMin: 0, suggestedMax: 1 } } }
+});
+</script>
+</body>
+</html>

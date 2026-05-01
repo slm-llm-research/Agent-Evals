@@ -1,0 +1,2 @@
+[console_scripts]
+agent-eval = agent_eval.cli.main:cli

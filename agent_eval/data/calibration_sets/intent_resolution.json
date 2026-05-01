@@ -1,0 +1,26 @@
+{
+  "dimension": "intent_resolution",
+  "description": "20 (query, plan, human_score) examples for IntentResolutionJudge.",
+  "examples": [
+    {"id": "ir-01", "query": "Compare Postgres vs MongoDB for IoT pipelines at 50k events/sec.", "plan": "1. Search Postgres write performance benchmarks. 2. Search MongoDB write performance benchmarks. 3. Search IoT-specific case studies for both. 4. Synthesize a recommendation.", "human_score": 1.0},
+    {"id": "ir-02", "query": "Compare Postgres vs MongoDB for IoT pipelines at 50k events/sec.", "plan": "1. Search 'Postgres'. 2. Return top result.", "human_score": 0.10, "notes": "ignores comparison + scale + IoT context"},
+    {"id": "ir-03", "query": "What is the capital of France?", "plan": "Direct answer: Paris.", "human_score": 1.0},
+    {"id": "ir-04", "query": "What is the capital of France?", "plan": "Search 'France', extract paragraph, summarize, return.", "human_score": 0.50, "notes": "over-engineered for trivial fact"},
+    {"id": "ir-05", "query": "Hey, can you set a reminder for tomorrow at 9am to call mom?", "plan": "Call reminder_create(time='2026-05-01T09:00:00', body='call mom').", "human_score": 1.0},
+    {"id": "ir-06", "query": "Hey, can you set a reminder for tomorrow at 9am to call mom?", "plan": "Search the web for 'reminder app'.", "human_score": 0.0, "notes": "misses underlying intent (action, not info)"},
+    {"id": "ir-07", "query": "Investigate the supply chain risks for semiconductors in Taiwan.", "plan": "1. Search recent news on TSMC and geopolitical risk. 2. Search for academic papers on Taiwan supply chain dependencies. 3. Synthesize key risks: geopolitical, natural disaster, single-supplier concentration.", "human_score": 0.95},
+    {"id": "ir-08", "query": "Investigate the supply chain risks for semiconductors in Taiwan.", "plan": "1. Search 'Taiwan'. 2. Return summary.", "human_score": 0.20, "notes": "fails to address the analytical depth"},
+    {"id": "ir-09", "query": "Translate 'good morning' to French.", "plan": "Direct answer: Bonjour.", "human_score": 1.0},
+    {"id": "ir-10", "query": "Translate 'good morning' to French.", "plan": "Search the web for translations.", "human_score": 0.5, "notes": "works but unnecessary"},
+    {"id": "ir-11", "query": "What's the latest in AI safety regulation in the EU?", "plan": "1. Search 'EU AI safety regulation 2026'. 2. Search 'EU AI Act'. 3. Summarize.", "human_score": 0.95},
+    {"id": "ir-12", "query": "What's the latest in AI safety regulation in the EU?", "plan": "Search 'AI'.", "human_score": 0.10, "notes": "ignores region + topic specifics"},
+    {"id": "ir-13", "query": "Should I learn Rust or Go for systems programming?", "plan": "1. Search Rust use cases. 2. Search Go use cases. 3. Compare on memory safety, concurrency, ecosystem. 4. Recommend with caveats.", "human_score": 0.95},
+    {"id": "ir-14", "query": "Should I learn Rust or Go for systems programming?", "plan": "Direct answer: Rust.", "human_score": 0.40, "notes": "no nuance"},
+    {"id": "ir-15", "query": "Find recent papers on chain-of-thought distillation.", "plan": "1. Search arxiv for 'chain of thought distillation'. 2. Filter to past 12 months. 3. Summarize top 5.", "human_score": 1.0},
+    {"id": "ir-16", "query": "Find recent papers on chain-of-thought distillation.", "plan": "Search 'distillation'.", "human_score": 0.20, "notes": "too broad — misses CoT"},
+    {"id": "ir-17", "query": "How tall is the Eiffel Tower?", "plan": "Direct: 330m.", "human_score": 1.0},
+    {"id": "ir-18", "query": "How tall is the Eiffel Tower?", "plan": "Search 'Eiffel Tower'. Then search 'Paris architecture'. Then search 'famous towers'. Then synthesize.", "human_score": 0.30, "notes": "wildly over-engineered"},
+    {"id": "ir-19", "query": "Stop.", "plan": "Halt current operation; return acknowledgement.", "human_score": 1.0, "notes": "barge-in handled correctly"},
+    {"id": "ir-20", "query": "Stop.", "plan": "Search 'stop' on the web.", "human_score": 0.0, "notes": "completely misreads the intent"}
+  ]
+}

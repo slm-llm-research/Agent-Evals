@@ -1,0 +1,26 @@
+{
+  "dimension": "tool_selection",
+  "description": "20 (query, tool_sequence, available_tools, human_score) examples for ToolSelectionJudge.",
+  "examples": [
+    {"id": "ts-01", "query": "What is the weather in NYC?", "tool_sequence": ["web_search"], "available_tools": ["web_search", "calculator"], "human_score": 1.0},
+    {"id": "ts-02", "query": "What is the weather in NYC?", "tool_sequence": ["calculator"], "available_tools": ["web_search", "calculator"], "human_score": 0.0, "notes": "wrong tool"},
+    {"id": "ts-03", "query": "What is 17 * 23?", "tool_sequence": ["calculator"], "available_tools": ["web_search", "calculator"], "human_score": 1.0},
+    {"id": "ts-04", "query": "What is 17 * 23?", "tool_sequence": ["web_search"], "available_tools": ["web_search", "calculator"], "human_score": 0.4, "notes": "would work but inefficient"},
+    {"id": "ts-05", "query": "Compare emissions of US, China, India in 2024.", "tool_sequence": ["web_search", "web_search", "web_search", "summarize"], "available_tools": ["web_search", "summarize"], "human_score": 1.0},
+    {"id": "ts-06", "query": "Compare emissions of US, China, India in 2024.", "tool_sequence": ["web_search"], "available_tools": ["web_search", "summarize"], "human_score": 0.4, "notes": "missing summarize step"},
+    {"id": "ts-07", "query": "Compare emissions of US, China, India in 2024.", "tool_sequence": ["web_search", "web_search", "web_search", "web_search", "web_search", "web_search", "summarize"], "available_tools": ["web_search", "summarize"], "human_score": 0.55, "notes": "redundant searches"},
+    {"id": "ts-08", "query": "What is the latest iPhone?", "tool_sequence": ["web_search"], "available_tools": ["web_search"], "human_score": 1.0},
+    {"id": "ts-09", "query": "Hello!", "tool_sequence": [], "available_tools": ["web_search"], "human_score": 1.0, "notes": "no tool needed"},
+    {"id": "ts-10", "query": "Hello!", "tool_sequence": ["web_search"], "available_tools": ["web_search"], "human_score": 0.30, "notes": "unnecessary tool call"},
+    {"id": "ts-11", "query": "Translate 'hello' to French.", "tool_sequence": [], "available_tools": ["translate", "web_search"], "human_score": 0.7, "notes": "could use translate, but LLM knows this"},
+    {"id": "ts-12", "query": "Translate 'hello' to French.", "tool_sequence": ["translate"], "available_tools": ["translate", "web_search"], "human_score": 1.0},
+    {"id": "ts-13", "query": "Set a reminder for tomorrow.", "tool_sequence": ["reminder_create"], "available_tools": ["reminder_create", "web_search"], "human_score": 1.0},
+    {"id": "ts-14", "query": "Set a reminder for tomorrow.", "tool_sequence": ["web_search"], "available_tools": ["reminder_create", "web_search"], "human_score": 0.05, "notes": "completely wrong"},
+    {"id": "ts-15", "query": "Find papers on RAG and summarize.", "tool_sequence": ["web_search", "web_search", "summarize"], "available_tools": ["web_search", "summarize"], "human_score": 1.0},
+    {"id": "ts-16", "query": "Find papers on RAG and summarize.", "tool_sequence": ["summarize", "web_search"], "available_tools": ["web_search", "summarize"], "human_score": 0.30, "notes": "wrong order"},
+    {"id": "ts-17", "query": "What's 2+2?", "tool_sequence": [], "available_tools": ["calculator"], "human_score": 1.0, "notes": "trivial — no tool needed"},
+    {"id": "ts-18", "query": "What's the square root of 1729?", "tool_sequence": ["calculator"], "available_tools": ["calculator"], "human_score": 1.0},
+    {"id": "ts-19", "query": "Tell me about quantum computing.", "tool_sequence": ["web_search", "summarize"], "available_tools": ["web_search", "summarize"], "human_score": 0.95},
+    {"id": "ts-20", "query": "Tell me about quantum computing.", "tool_sequence": ["calculator", "web_search", "summarize"], "available_tools": ["calculator", "web_search", "summarize"], "human_score": 0.55, "notes": "calculator irrelevant"}
+  ]
+}

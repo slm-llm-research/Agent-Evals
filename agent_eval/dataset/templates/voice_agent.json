@@ -1,0 +1,17 @@
+{
+  "name": "voice_agent_template",
+  "description": "10 starter examples for streaming voice agents. Optimized for short utterances, conversational queries, and ASR stress tests.",
+  "version": "1",
+  "examples": [
+    {"input": {"query": "What's the weather like today?"}, "expected_intent": "search", "expected_tool_sequence": ["web_search"], "complexity": "simple", "query_type": "voice", "expected_answer_keywords": ["weather"], "tags": ["short", "conversational"], "created_by": "template"},
+    {"input": {"query": "Hey, can you set a reminder for tomorrow at 9 a.m.?"}, "expected_intent": "general", "complexity": "simple", "query_type": "voice", "expected_answer_keywords": ["reminder"], "tags": ["instruction"], "created_by": "template"},
+    {"input": {"query": "Tell me about the news."}, "expected_intent": "research", "expected_tool_sequence": ["web_search", "summarize"], "complexity": "medium", "query_type": "voice", "expected_answer_keywords": ["news"], "tags": ["open-ended"], "created_by": "template"},
+    {"input": {"query": "And what about tomorrow?"}, "expected_intent": "general", "complexity": "medium", "query_type": "voice", "tags": ["follow-up"], "created_by": "template", "notes": "Requires conversational context — agent should ask for clarification or reference prior turn."},
+    {"input": {"query": "Can you spell that?"}, "expected_intent": "general", "complexity": "simple", "query_type": "voice", "tags": ["meta", "follow-up"], "created_by": "template"},
+    {"input": {"query": "What's the difference between their and there and they're?"}, "expected_intent": "general", "complexity": "simple", "query_type": "voice", "expected_answer_keywords": ["their", "there"], "tags": ["homophones", "asr-stress"], "created_by": "template"},
+    {"input": {"query": "Call John Smith on his cell phone."}, "expected_intent": "general", "complexity": "simple", "query_type": "voice", "tags": ["names", "asr-stress", "action"], "created_by": "template"},
+    {"input": {"query": "How tall is the Eiffel Tower?"}, "expected_intent": "search", "expected_tool_sequence": ["web_search"], "complexity": "simple", "query_type": "voice", "expected_answer_keywords": ["Eiffel"], "tags": ["short", "factual"], "created_by": "template"},
+    {"input": {"query": "Um, like, can you, you know, tell me about that thing we talked about earlier?"}, "expected_intent": "general", "complexity": "medium", "query_type": "voice", "tags": ["disfluency", "vague"], "created_by": "template"},
+    {"input": {"query": "Stop."}, "expected_intent": "general", "complexity": "simple", "query_type": "voice", "tags": ["barge-in", "control"], "created_by": "template"}
+  ]
+}

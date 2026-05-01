@@ -1,0 +1,26 @@
+{
+  "dimension": "answer_quality",
+  "description": "20 (query, answer, human_score) calibration examples for AnswerQualityJudge. Scores reflect a strict rubric over correctness, completeness, clarity, conciseness.",
+  "examples": [
+    {"id": "aq-01", "query": "What is the capital of France?", "answer": "The capital of France is Paris.", "human_score": 1.0, "notes": "perfect"},
+    {"id": "aq-02", "query": "What is the capital of France?", "answer": "Paris.", "human_score": 0.85, "notes": "correct but terse"},
+    {"id": "aq-03", "query": "What is the capital of France?", "answer": "France's capital is Lyon.", "human_score": 0.0, "notes": "wrong"},
+    {"id": "aq-04", "query": "What is the capital of France?", "answer": "France is a country in Europe known for wine.", "human_score": 0.1, "notes": "evades the question"},
+    {"id": "aq-05", "query": "What is the capital of France?", "answer": "", "human_score": 0.0, "notes": "empty"},
+    {"id": "aq-06", "query": "Compare Python and Go for backend services.", "answer": "Python offers richer libraries and faster prototyping; Go offers better concurrency and lower memory overhead. For high-throughput services, Go usually wins; for ML-heavy services, Python wins.", "human_score": 0.95, "notes": "concise, balanced"},
+    {"id": "aq-07", "query": "Compare Python and Go for backend services.", "answer": "Python is good. Go is also good. Both are programming languages used in backend.", "human_score": 0.20, "notes": "vacuous"},
+    {"id": "aq-08", "query": "Compare Python and Go for backend services.", "answer": "Python is dynamically typed, interpreted, has GIL, popular for ML, ML libraries include numpy, pandas, scikit-learn, tensorflow, pytorch, also great web frameworks like Django and Flask, async via asyncio, package manager pip. Go is statically typed, compiled, has goroutines for concurrency, garbage collected, package manager go modules, popular at Google, used for systems software, gRPC services, kubernetes is written in Go, very fast startup, low memory.", "human_score": 0.55, "notes": "info-dense but rambling, no synthesis"},
+    {"id": "aq-09", "query": "Summarize the plot of Hamlet in two sentences.", "answer": "Prince Hamlet of Denmark learns from his father's ghost that his uncle Claudius murdered the king and married his mother. Hamlet's quest for revenge leads to a chain of deaths that ultimately claims his own life.", "human_score": 1.0, "notes": "perfect"},
+    {"id": "aq-10", "query": "Summarize the plot of Hamlet in two sentences.", "answer": "Hamlet is a play by Shakespeare written around 1600. It is one of his most famous tragedies and has been performed countless times.", "human_score": 0.10, "notes": "evades — gives meta-info, not plot"},
+    {"id": "aq-11", "query": "How tall is the Eiffel Tower?", "answer": "Approximately 330 meters (including antennae).", "human_score": 1.0, "notes": "correct"},
+    {"id": "aq-12", "query": "How tall is the Eiffel Tower?", "answer": "About 200 feet.", "human_score": 0.0, "notes": "wrong"},
+    {"id": "aq-13", "query": "How tall is the Eiffel Tower?", "answer": "The Eiffel Tower stands roughly 330 meters tall (including its broadcast antennae); the original 1889 height was 300 meters.", "human_score": 0.95, "notes": "correct + helpful context"},
+    {"id": "aq-14", "query": "Translate 'good morning' to French.", "answer": "Bonjour", "human_score": 1.0, "notes": "perfect"},
+    {"id": "aq-15", "query": "Translate 'good morning' to French.", "answer": "Buenos días", "human_score": 0.0, "notes": "Spanish, not French"},
+    {"id": "aq-16", "query": "What is 17 * 23?", "answer": "391", "human_score": 1.0},
+    {"id": "aq-17", "query": "What is 17 * 23?", "answer": "It is a multiplication of two prime-ish numbers; the answer is a three-digit number around 400.", "human_score": 0.30, "notes": "evades calculation"},
+    {"id": "aq-18", "query": "Tell me a joke.", "answer": "Why don't scientists trust atoms? Because they make up everything.", "human_score": 0.85, "notes": "decent joke"},
+    {"id": "aq-19", "query": "Tell me a joke.", "answer": "I don't tell jokes.", "human_score": 0.30, "notes": "refuses an inoffensive request"},
+    {"id": "aq-20", "query": "What's the weather in NYC today?", "answer": "I don't have real-time data; please check a weather service.", "human_score": 0.75, "notes": "honest refusal — appropriate"}
+  ]
+}

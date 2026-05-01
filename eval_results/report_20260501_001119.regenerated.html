@@ -1,0 +1,3966 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>agent-eval report — agent-system</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  body { font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; margin: 32px; color: #222; max-width: 1200px; }
+  h1 { margin: 0 0 4px 0; }
+  h2 { margin-top: 36px; padding-bottom: 6px; border-bottom: 1px solid #eee; }
+  h3 { margin-top: 18px; font-size: 15px; }
+  .muted { color: #777; font-size: 12px; }
+  .badge { display: inline-block; padding: 3px 9px; border-radius: 12px; font-weight: 600; font-size: 12px; color: white; }
+  .badge.excellent { background: #2e7d32; }
+  .badge.good { background: #689f38; }
+  .badge.needs_improvement { background: #f9a825; color: #222; }
+  .badge.critical { background: #c62828; }
+  .badge.passed { background: #2e7d32; }
+  .badge.failed { background: #c62828; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .card { border: 1px solid #eee; border-radius: 8px; padding: 16px; background: #fff; }
+  .gauge { font-size: 48px; font-weight: 700; }
+  .small { font-size: 12px; color: #555; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid #f1f1f1; vertical-align: top; }
+  th { background: #fafafa; font-weight: 600; cursor: pointer; user-select: none; }
+  th.asc::after { content: " ▲"; color: #999; }
+  th.desc::after { content: " ▼"; color: #999; }
+  tr.flagged td { background: #fff3e0; }
+  tr.critical td { background: #ffebee; }
+  details { margin: 8px 0; }
+  details > summary { cursor: pointer; padding: 4px 0; }
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-size: 12px; }
+  pre { background: #fafafa; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.4; max-height: 320px; }
+  .pill { display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 8px; margin-right: 4px; background: #e0e0e0; color: #333; }
+  .pill.critical { background: #c62828; color: white; }
+  .pill.high { background: #f9a825; color: #222; }
+  .pill.medium { background: #1976d2; color: white; }
+  .pill.low { background: #9e9e9e; color: white; }
+  .delta-pos { color: #2e7d32; font-weight: 600; }
+  .delta-neg { color: #c62828; font-weight: 600; }
+  .copy-btn { font-size: 11px; padding: 2px 6px; border: 1px solid #ccc; background: #fff; cursor: pointer; border-radius: 4px; }
+  .copy-btn:hover { background: #f0f0f0; }
+  .nav { position: sticky; top: 0; background: white; padding: 8px 0; border-bottom: 1px solid #eee; margin-bottom: 16px; z-index: 10; }
+  .nav a { margin-right: 12px; color: #1976d2; text-decoration: none; font-size: 13px; }
+  .nav a:hover { text-decoration: underline; }
+  input.filter { padding: 4px 8px; font-size: 13px; border: 1px solid #ccc; border-radius: 4px; width: 240px; }
+  .filter-bar { display: flex; gap: 8px; align-items: center; margin: 12px 0; flex-wrap: wrap; }
+  .filter-btn { padding: 4px 12px; border: 1px solid #ccc; background: white; cursor: pointer; border-radius: 4px; font-size: 13px; }
+  .filter-btn.active { background: #1976d2; color: white; border-color: #1976d2; }
+  .query-card { border: 1px solid #eee; border-radius: 8px; margin: 8px 0; padding: 0; background: #fff; }
+  .query-header { padding: 12px 16px; cursor: pointer; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .query-header:hover { background: #fafafa; }
+  .query-header.passed { border-left: 4px solid #2e7d32; }
+  .query-header.failed { border-left: 4px solid #c62828; }
+  .query-text { flex: 1; min-width: 300px; font-weight: 500; }
+  .query-body { padding: 0 16px 16px 16px; border-top: 1px solid #f0f0f0; background: #fafbfc; display: none; }
+  .query-card.expanded .query-body { display: block; }
+  .meta { font-size: 12px; color: #555; }
+  .meta strong { color: #333; }
+  .tool-table td { font-size: 12px; padding: 4px 8px; }
+  .ok { color: #2e7d32; font-weight: 600; }
+  .err { color: #c62828; font-weight: 600; }
+  .recommendation { background: #fff7e6; border: 1px solid #ffe082; padding: 12px 16px; border-radius: 6px; margin: 8px 0; }
+  .recommendation.critical { background: #ffebee; border-color: #ef9a9a; }
+  .recommendation.high { background: #fff8e1; border-color: #ffd54f; }
+  .empty { color: #999; font-style: italic; padding: 12px 0; }
+  .kbd { font-family: monospace; background: #eee; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+</style>
+</head>
+<body>
+  <h1>agent-eval — agent-system</h1>
+  <div class="muted">
+    Report ID <code>8fd02433-23d4-4403-8e28-5c17f9da625c</code> · Generated 2026-05-01 00:11 UTC
+    · Dataset <code>research_agent_template</code> (12 examples)
+    · Duration 47.4s
+    · Package v0.2.0
+    
+  </div>
+
+  <div class="nav">
+    <a href="#recommendations">⚡ Recommendations</a>
+    <a href="#overview">Overview</a>
+    <a href="#metrics">Metrics</a>
+    <a href="#queries">Queries</a>
+    <a href="#issues">Issues</a>
+    <a href="#components">Components</a>
+    <a href="#dataset">Dataset</a>
+    
+    <a href="#raw">Raw data</a>
+  </div>
+
+  <!-- ════════════════════════════ RECOMMENDATIONS (TOP) ════════════════════════════ -->
+  <h2 id="recommendations">⚡ Recommendations</h2>
+  <div class="muted">Prioritized by severity. Each card explains the issue and the next concrete action.</div>
+  
+    
+      <div class="recommendation critical">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <span class="pill critical">critical</span>
+          <strong>answer-generation node</strong>
+          <span class="muted">— answer quality</span>
+          <span style="margin-left: auto;" class="muted">
+            score 0.19 → target 0.85
+            · effort: hours · type: <code>prompt</code>
+          </span>
+        </div>
+        <div style="margin-top: 8px;">Add 3-5 few-shot examples of correct answers to the answer-generation prompt. Tighten output format constraints (word limit, sections).</div>
+        
+      </div>
+    
+      <div class="recommendation medium">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <span class="pill medium">medium</span>
+          <strong>orchestrator / planner</strong>
+          <span class="muted">— trajectory quality</span>
+          <span style="margin-left: auto;" class="muted">
+            score 0.67 → target 0.85
+            · effort: hours · type: <code>architecture</code>
+          </span>
+        </div>
+        <div style="margin-top: 8px;">Tighten the planner prompt to require explicit tool selection rationale. Add a stop condition for research depth (max 2 iterations) and a cycle guard.</div>
+        
+      </div>
+    
+  
+
+  <!-- ════════════════════════════ OVERVIEW ════════════════════════════ -->
+  <h2 id="overview">📊 Overview</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="small">Overall score</div>
+      <div class="gauge">0.71</div>
+      <div><span class="badge good">GOOD</span></div>
+      <div class="small" style="margin-top: 12px;">
+        <strong>73%</strong> pass rate ·
+        <strong>94</strong> flags
+        (94 critical)
+      </div>
+    </div>
+    <div class="card">
+      <div class="small">Dimension radar</div>
+      <canvas id="dimensionRadar" width="350" height="280"></canvas>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════ METRICS EXPLAINED ════════════════════════════ -->
+  <h2 id="metrics">📈 Metrics</h2>
+
+  <h3>Headline metrics</h3>
+  <table>
+    <thead><tr><th style="width: 200px;">Metric</th><th style="width: 100px;">Score</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Overall</strong></td><td>0.708</td><td>Weighted aggregate across all 7 dimensions. Output quality 30%, hallucination-safety 15%, trajectory 15%, then 10% each for tool/system/safety/memory.</td></tr>
+      <tr><td><strong>Status</strong></td><td><span class="badge good">GOOD</span></td><td>Bucket of overall_score: ≥0.85 excellent · 0.70-0.84 good · 0.50-0.69 needs improvement · <0.50 critical.</td></tr>
+      <tr><td><strong>Pass rate</strong></td><td>73%</td><td>Fraction of (example × evaluator) pairs that passed their threshold (default 0.7). Higher is better.</td></tr>
+      <tr class="flagged"><td><strong>Flags</strong></td><td>94</td><td>Number of evaluator results that scored below 0.5 — likely real issues to investigate.</td></tr>
+      <tr class="critical"><td><strong>Critical flags</strong></td><td>94</td><td>Subset of flags that are critical: score < 0.3 OR a cycle was detected. Halt new features and fix these first.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Dimension scores</h3>
+  <table>
+    <thead><tr><th style="width: 200px;">Dimension</th><th style="width: 100px;">Score</th><th>What it measures</th></tr></thead>
+    <tbody>
+    
+      <tr class="critical">
+        <td><strong>output_quality</strong></td>
+        <td>0.194</td>
+        <td>How good is the agent's final answer? Aggregates: task success, faithfulness (sources support claims), relevance (answer addresses query), completeness, format compliance, keyword coverage.</td>
+      </tr>
+    
+      <tr class="flagged">
+        <td><strong>trajectory_quality</strong></td>
+        <td>0.667</td>
+        <td>How efficient and correct is the agent's reasoning path? Aggregates: tool selection accuracy, Tool F1, Node F1, structural similarity, intent resolution, step success, redundancy, error recovery, cycle detection.</td>
+      </tr>
+    
+      <tr >
+        <td><strong>hallucination_risk</strong></td>
+        <td>0.000</td>
+        <td>Risk that the agent fabricated facts. **Higher = MORE risk** (inverted from the supporting evaluators). Aggregates 4 levels: planning (entities), observation (vs tool outputs), citation (URLs), reasoning (NLI).</td>
+      </tr>
+    
+      <tr >
+        <td><strong>tool_performance</strong></td>
+        <td>1.000</td>
+        <td>How reliable and useful were the tools? Aggregates: per-tool success rate, P95 latency, result quality, argument correctness, MCP server availability, cost per call.</td>
+      </tr>
+    
+      <tr >
+        <td><strong>system_performance</strong></td>
+        <td>1.000</td>
+        <td>End-to-end runtime characteristics. Aggregates: P95 latency, time-to-first-audio-byte (voice), token efficiency, error rate, cost per query.</td>
+      </tr>
+    
+      <tr >
+        <td><strong>safety</strong></td>
+        <td>1.000</td>
+        <td>Output safety. Aggregates: harmful content (OpenAI Moderation), PII leakage (regex), instruction-following compliance, response consistency across re-runs.</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><strong>memory_quality</strong></td>
+        <td>0.000</td>
+        <td>Active only if a memory backend (vector store / Mem0 / Zep) is detected. Aggregates: retrieval recall, retrieval precision, write quality (over/under-storing), staleness, cross-session continuity, cost. A score of 0 means no memory backend was detected — not a failure.</td>
+      </tr>
+    
+    </tbody>
+  </table>
+
+  <!-- ════════════════════════════ QUERIES EVALUATED ════════════════════════════ -->
+  <h2 id="queries">📋 Queries evaluated</h2>
+  <div class="muted">12 queries ran against the agent. Click any card to expand actual output, tool calls, and per-evaluator scores.</div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all" onclick="filterQueries('all', this)">All (0)</button>
+    <button class="filter-btn" data-filter="passed" onclick="filterQueries('passed', this)">✅ Passed (0)</button>
+    <button class="filter-btn" data-filter="failed" onclick="filterQueries('failed', this)">❌ Failed (0)</button>
+    <input class="filter" id="query-text-filter" placeholder="Filter by query text…" oninput="filterByText()">
+  </div>
+
+  
+    <div class="empty">No per-example data — was this report generated without a runner?</div>
+  
+
+  <!-- ════════════════════════════ ISSUES ════════════════════════════ -->
+  <h2 id="issues">⚠️ Top issues</h2>
+  
+  <table>
+    <thead><tr><th>Severity</th><th>Component</th><th>Metric</th><th>Score</th><th>Description</th></tr></thead>
+    <tbody>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.00</td>
+        <td>task_success_rate below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.00</td>
+        <td>empty answer</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.00</td>
+        <td>answer_relevance below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.00</td>
+        <td>completeness below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.00</td>
+        <td>keyword_coverage below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.00</td>
+        <td>tool_selection_accuracy below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.00</td>
+        <td>tool_f1 below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>0.00</td>
+        <td>node_f1 below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>0.00</td>
+        <td>ssi below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>multi-hop</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.00</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cd7a410 state=finished raised OpenAIError>]</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.00</td>
+        <td>task_success_rate below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.00</td>
+        <td>empty answer</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.00</td>
+        <td>answer_relevance below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.00</td>
+        <td>completeness below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.00</td>
+        <td>keyword_coverage below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.00</td>
+        <td>tool_selection_accuracy below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.00</td>
+        <td>tool_f1 below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>technical-analysis</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.00</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdaca10 state=finished raised OpenAIError>]</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.00</td>
+        <td>task_success_rate below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.00</td>
+        <td>empty answer</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.00</td>
+        <td>answer_relevance below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.00</td>
+        <td>completeness below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.00</td>
+        <td>keyword_coverage below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.00</td>
+        <td>tool_selection_accuracy below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.00</td>
+        <td>tool_f1 below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>decision-support</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.00</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdac910 state=finished raised OpenAIError>]</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.00</td>
+        <td>task_success_rate below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.00</td>
+        <td>empty answer</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.00</td>
+        <td>answer_relevance below threshold</td>
+      </tr>
+    
+      <tr class="critical">
+        <td><span class="pill critical">critical</span></td>
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.00</td>
+        <td>completeness below threshold</td>
+      </tr>
+    
+    </tbody>
+  </table>
+  
+
+  <!-- ════════════════════════════ COMPONENTS ════════════════════════════ -->
+  <h2 id="components">📦 Components</h2>
+  <table id="components-table">
+    <thead><tr><th data-sort="num">#</th><th data-sort="text">Component</th><th data-sort="text">Type</th><th data-sort="num">Score</th><th>Status</th><th data-sort="num">Trend</th></tr></thead>
+    <tbody>
+    
+      <tr>
+        <td>1</td>
+        <td><strong>system</strong></td>
+        <td>agent</td>
+        <td>0.76</td>
+        <td><span class="badge good">GOOD</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+      <tr>
+        <td>2</td>
+        <td><strong>multi-hop</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+      <tr>
+        <td>3</td>
+        <td><strong>technical-analysis</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+      <tr>
+        <td>4</td>
+        <td><strong>decision-support</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+      <tr>
+        <td>5</td>
+        <td><strong>multi-region</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+      <tr>
+        <td>6</td>
+        <td><strong>narrative</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+      <tr>
+        <td>7</td>
+        <td><strong>technical</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+      <tr>
+        <td>8</td>
+        <td><strong>comparison</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+      <tr>
+        <td>9</td>
+        <td><strong>geopolitics</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+      <tr>
+        <td>10</td>
+        <td><strong>academic</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+      <tr>
+        <td>11</td>
+        <td><strong>combinatorial-explosion</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+      <tr>
+        <td>12</td>
+        <td><strong>nonsense-but-answerable</strong></td>
+        <td>agent</td>
+        <td>0.00</td>
+        <td><span class="badge critical">CRITICAL</span></td>
+        <td>
+          —
+        </td>
+      </tr>
+    
+    </tbody>
+  </table>
+
+  <!-- ════════════════════════════ DATASET ════════════════════════════ -->
+  <h2 id="dataset">📊 Dataset coverage</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="small">Query types</div>
+      <canvas id="queryTypePie" width="350" height="280"></canvas>
+    </div>
+    <div class="card">
+      <div class="small">Complexity</div>
+      <canvas id="complexityBar" width="350" height="280"></canvas>
+    </div>
+  </div>
+
+  
+
+  <!-- ════════════════════════════ RAW DATA ════════════════════════════ -->
+  <h2 id="raw">📚 Raw data</h2>
+  <input class="filter" id="raw-filter" placeholder="Filter by component, metric, reason…" oninput="filterRaw()">
+  <table id="raw-table">
+    <thead><tr><th data-sort="text">Component</th><th data-sort="text">Metric</th><th data-sort="num">Score</th><th>Pass</th><th data-sort="num">Latency</th><th>Flag reason</th></tr></thead>
+    <tbody>
+    
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>459.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.3ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>task_success_rate</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_faithfulness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>empty answer</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>answer_relevance</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>system</td>
+        <td><code>completeness</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>format_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>keyword_coverage</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>node_f1</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>ssi</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>step_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>redundancy_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_recovery_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cycle_detected</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_planning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_observation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_citation</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.3ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>hallucination_reasoning</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>tool_success_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>mcp_server_availability</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>end_to_end_latency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>time_to_first_audio_byte</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>token_efficiency</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>error_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>cost_per_query_usd</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>harmful_content_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>pii_leakage_rate</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.1ms</td>
+        <td>—</td>
+      </tr>
+      
+      <tr class="">
+        <td>system</td>
+        <td><code>instruction_compliance</code></td>
+        <td>1.000</td>
+        <td>✓</td>
+        <td>0.0ms</td>
+        <td>—</td>
+      </tr>
+      
+    
+      
+      <tr class="flagged">
+        <td>multi-hop</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>7819.1ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cd7a410 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+    
+      
+      <tr class="flagged">
+        <td>technical-analysis</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3006.2ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdaca10 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+    
+      
+      <tr class="flagged">
+        <td>decision-support</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3007.1ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdac910 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+    
+      
+      <tr class="flagged">
+        <td>multi-region</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3003.4ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdc0190 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+    
+      
+      <tr class="flagged">
+        <td>narrative</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3007.8ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdc2510 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+    
+      
+      <tr class="flagged">
+        <td>technical</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3006.9ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdc2610 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>technical</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3005.1ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdf9050 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+    
+      
+      <tr class="flagged">
+        <td>comparison</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3005.9ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdd8dd0 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+    
+      
+      <tr class="flagged">
+        <td>geopolitics</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3004.5ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cddb110 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+    
+      
+      <tr class="flagged">
+        <td>academic</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3001.8ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdc20d0 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+    
+      
+      <tr class="flagged">
+        <td>combinatorial-explosion</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3005.2ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdfabd0 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>combinatorial-explosion</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3004.5ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdfb990 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+    
+      
+      <tr class="flagged">
+        <td>nonsense-but-answerable</td>
+        <td><code>tool_selection_accuracy</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3006.5ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17d311910 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+      <tr class="flagged">
+        <td>nonsense-but-answerable</td>
+        <td><code>intent_resolution</code></td>
+        <td>0.000</td>
+        <td>✗</td>
+        <td>3003.8ms</td>
+        <td>evaluator raised: RetryError: RetryError[<Future at 0x17cdc19d0 state=finished raised OpenAIError>]</td>
+      </tr>
+      
+    
+    </tbody>
+  </table>
+
+  <h2 id="backends">🔧 Backends used</h2>
+  <ul class="small">
+  
+    <li><code>task_success_rate</code> via <strong>native</strong></li>
+  
+    <li><code>answer_faithfulness</code> via <strong>native</strong></li>
+  
+    <li><code>answer_relevance</code> via <strong>native</strong></li>
+  
+    <li><code>completeness</code> via <strong>native</strong></li>
+  
+    <li><code>format_compliance</code> via <strong>native</strong></li>
+  
+    <li><code>keyword_coverage</code> via <strong>native</strong></li>
+  
+    <li><code>tool_selection_accuracy</code> via <strong>native</strong></li>
+  
+    <li><code>tool_f1</code> via <strong>native</strong></li>
+  
+    <li><code>node_f1</code> via <strong>native</strong></li>
+  
+    <li><code>ssi</code> via <strong>native</strong></li>
+  
+    <li><code>intent_resolution</code> via <strong>native</strong></li>
+  
+    <li><code>step_success_rate</code> via <strong>native</strong></li>
+  
+    <li><code>redundancy_rate</code> via <strong>native</strong></li>
+  
+    <li><code>error_recovery_rate</code> via <strong>native</strong></li>
+  
+    <li><code>cycle_detected</code> via <strong>native</strong></li>
+  
+    <li><code>hallucination_planning</code> via <strong>native</strong></li>
+  
+    <li><code>hallucination_observation</code> via <strong>native</strong></li>
+  
+    <li><code>hallucination_citation</code> via <strong>native</strong></li>
+  
+    <li><code>hallucination_reasoning</code> via <strong>native</strong></li>
+  
+    <li><code>tool_success_rate</code> via <strong>native</strong></li>
+  
+    <li><code>mcp_server_availability</code> via <strong>native</strong></li>
+  
+    <li><code>end_to_end_latency</code> via <strong>native</strong></li>
+  
+    <li><code>time_to_first_audio_byte</code> via <strong>native</strong></li>
+  
+    <li><code>token_efficiency</code> via <strong>native</strong></li>
+  
+    <li><code>error_rate</code> via <strong>native</strong></li>
+  
+    <li><code>cost_per_query_usd</code> via <strong>native</strong></li>
+  
+    <li><code>harmful_content_rate</code> via <strong>native</strong></li>
+  
+    <li><code>pii_leakage_rate</code> via <strong>native</strong></li>
+  
+    <li><code>instruction_compliance</code> via <strong>native</strong></li>
+  
+  </ul>
+
+<script>
+new Chart(document.getElementById('dimensionRadar'), {
+  type: 'radar',
+  data: {
+    labels: ['output','trajectory','hallu_risk','tool','system','safety','memory'],
+    datasets: [{
+      label: 'agent-system',
+      data: [
+        0.19444444444444445,
+        0.6666666666666666,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      fill: true,
+      backgroundColor: 'rgba(70,130,180,0.2)',
+      borderColor: 'rgb(70,130,180)',
+      pointBackgroundColor: 'rgb(70,130,180)',
+    }]
+  },
+  options: { scales: { r: { suggestedMin: 0, suggestedMax: 1 } } }
+});
+
+new Chart(document.getElementById('queryTypePie'), {
+  type: 'doughnut',
+  data: {
+    labels: ["unknown"],
+    datasets: [{ data: [12], backgroundColor: ['#1976d2','#689f38','#fbc02d','#c62828','#7b1fa2','#00838f'] }]
+  }
+});
+
+new Chart(document.getElementById('complexityBar'), {
+  type: 'bar',
+  data: {
+    labels: ["unknown"],
+    datasets: [{ data: [12], backgroundColor: '#689f38' }]
+  },
+  options: { plugins: { legend: { display: false } } }
+});
+
+
+
+// Sortable
+function attachSort(tableId) {
+  const table = document.getElementById(tableId);
+  if (!table) return;
+  const headers = table.querySelectorAll('th[data-sort]');
+  headers.forEach((h, idx) => {
+    h.addEventListener('click', () => {
+      const tbody = table.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const sortType = h.dataset.sort;
+      const asc = !h.classList.contains('asc');
+      headers.forEach(hh => hh.classList.remove('asc', 'desc'));
+      h.classList.add(asc ? 'asc' : 'desc');
+      rows.sort((a, b) => {
+        const av = a.children[idx].textContent.trim();
+        const bv = b.children[idx].textContent.trim();
+        if (sortType === 'num') return (parseFloat(av) - parseFloat(bv)) * (asc ? 1 : -1);
+        return av.localeCompare(bv) * (asc ? 1 : -1);
+      });
+      rows.forEach(r => tbody.appendChild(r));
+    });
+  });
+}
+attachSort('components-table');
+attachSort('raw-table');
+
+function filterRaw() {
+  const q = document.getElementById('raw-filter').value.toLowerCase();
+  const tbody = document.querySelector('#raw-table tbody');
+  Array.from(tbody.querySelectorAll('tr')).forEach(r => {
+    r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+// Query card expand/collapse
+function toggleQuery(header) {
+  header.parentElement.classList.toggle('expanded');
+}
+
+// Filter queries by status
+let _activeStatusFilter = 'all';
+function filterQueries(status, btn) {
+  _activeStatusFilter = status;
+  document.querySelectorAll('.filter-bar .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyQueryFilters();
+}
+function filterByText() { applyQueryFilters(); }
+function applyQueryFilters() {
+  const txt = (document.getElementById('query-text-filter').value || '').toLowerCase();
+  document.querySelectorAll('.query-card').forEach(card => {
+    const matchStatus = _activeStatusFilter === 'all' || card.dataset.status === _activeStatusFilter;
+    const matchText = !txt || card.textContent.toLowerCase().includes(txt);
+    card.style.display = (matchStatus && matchText) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

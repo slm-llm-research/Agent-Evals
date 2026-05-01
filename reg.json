@@ -1,0 +1,210 @@
+{
+  "agents": [
+    {
+      "name": "orchestrator",
+      "agent_type": "unknown",
+      "tools": [],
+      "is_entry_point": false,
+      "is_exit_point": false,
+      "has_self_loop": false,
+      "calls_subgraph": false,
+      "avg_latency_ms": null,
+      "call_count": null,
+      "source": "mcp"
+    },
+    {
+      "name": "search_agent",
+      "agent_type": "unknown",
+      "tools": [],
+      "is_entry_point": false,
+      "is_exit_point": false,
+      "has_self_loop": false,
+      "calls_subgraph": false,
+      "avg_latency_ms": null,
+      "call_count": null,
+      "source": "mcp"
+    },
+    {
+      "name": "research_agent",
+      "agent_type": "unknown",
+      "tools": [],
+      "is_entry_point": false,
+      "is_exit_point": false,
+      "has_self_loop": false,
+      "calls_subgraph": false,
+      "avg_latency_ms": null,
+      "call_count": null,
+      "source": "mcp"
+    }
+  ],
+  "tools": [
+    {
+      "name": "tavily_search_tool",
+      "description": "Search the web using Tavily for real-time information.",
+      "input_schema": {
+        "properties": {
+          "query": {
+            "title": "Query",
+            "type": "string"
+          },
+          "max_results": {
+            "default": 5,
+            "title": "Max Results",
+            "type": "integer"
+          },
+          "search_depth": {
+            "default": "basic",
+            "enum": [
+              "basic",
+              "advanced"
+            ],
+            "title": "Search Depth",
+            "type": "string"
+          },
+          "topic": {
+            "default": "general",
+            "enum": [
+              "general",
+              "news",
+              "finance"
+            ],
+            "title": "Topic",
+            "type": "string"
+          },
+          "days": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Days"
+          },
+          "include_domains": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Include Domains",
+            "type": "array"
+          },
+          "exclude_domains": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Exclude Domains",
+            "type": "array"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "SearchInput",
+        "type": "object"
+      },
+      "output_schema": {
+        "type": "array",
+        "items": {
+          "properties": {
+            "title": {
+              "title": "Title",
+              "type": "string"
+            },
+            "url": {
+              "title": "Url",
+              "type": "string"
+            },
+            "content": {
+              "title": "Content",
+              "type": "string"
+            },
+            "score": {
+              "title": "Score",
+              "type": "number"
+            },
+            "published_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Published Date"
+            }
+          },
+          "required": [
+            "title",
+            "url",
+            "content",
+            "score"
+          ],
+          "title": "SearchResult",
+          "type": "object"
+        }
+      },
+      "is_llm_based": false,
+      "estimated_cost_per_call_usd": null,
+      "source": "mcp"
+    },
+    {
+      "name": "summarize_tool",
+      "description": "Deterministically summarize text using LSA. No LLM call — fast and cheap.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Text to summarize"
+          },
+          "max_sentences": {
+            "type": "integer",
+            "default": 7,
+            "description": "Maximum number of output sentences"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string"
+          },
+          "sentence_count": {
+            "type": "integer"
+          },
+          "compression_ratio": {
+            "type": "number"
+          },
+          "original_length": {
+            "type": "integer"
+          },
+          "summary_length": {
+            "type": "integer"
+          },
+          "processing_time_ms": {
+            "type": "number"
+          }
+        }
+      },
+      "is_llm_based": true,
+      "estimated_cost_per_call_usd": null,
+      "source": "mcp"
+    }
+  ],
+  "mcp_servers": [],
+  "memory_backends": [],
+  "state_schema": null,
+  "entry_point": null,
+  "discovery_method": "mcp",
+  "discovered_at": "2026-05-01T00:10:23.178219Z"
+}
